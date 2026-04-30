@@ -1,9 +1,16 @@
 <?php
+// Railway ke environment variables read karne ke liye getenv use karen
+$host = getenv('MYSQLHOST');
+$user = getenv('MYSQLUSER');
+$pass = getenv('MYSQLPASSWORD');
+$db   = getenv('MYSQL_DATABASE'); 
+$port = getenv('MYSQLPORT');
 
-$conn = mysqli_connect("localhost", "root", "", "finance_tracker_web_app");
+// Connection string
+$conn = mysqli_connect($host, $user, $pass, $db, $port);
 
 if (!$conn) {
-    die("Connection Failed");
+    // Sirf debug ke liye error show karega
+    die("Connection Failed: " . mysqli_connect_error());
 }
-
 ?>
